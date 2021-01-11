@@ -11,10 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+// ユーザーのルート
+Route::namespace('User')->prefix('user')->name('user.')->group(function () {
+    // ログイン認証関連
+    Auth::routes([
+        'register' => true,
+        'reset' => false,
+        'verify' => false
+    ]);
+
+    // ログイン認証後
+    Route::middleware('auth:user')->group(function () {
+        // トップページ
+        Route::resource('home', 'HomeController', ['only' => 'index']);
+    });
 });
 
-Auth::routes();
+// 管理者のルート
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+    // ログイン認証関連
+    Auth::routes([
+        'register' => true,
+        'reset' => false,
+        'verify' => false
+    ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+    // ログイン認証後
+    Route::middleware('auth:admin')->group(function () {
+        // トップページ
+        Route::resource('home', 'HomeController', ['only' => 'index']);
+    });
+});
