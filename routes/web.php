@@ -43,3 +43,19 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::resource('home', 'HomeController', ['only' => 'index']);
     });
 });
+
+// Anotherのルート
+Route::namespace('Another')->prefix('another')->name('another.')->group(function () {
+    // ログインの認証関連
+    Auth::routes([
+        'register' => true,
+        'reset' => false,
+        'verify' => false
+    ]);
+
+    // ログイン認証後
+    Route::middleware('auth:another')->group(function () {
+        // トップページ
+        Route::resource('home', 'HomeController', ['noly' => 'index']);
+    });
+});

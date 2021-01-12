@@ -49,6 +49,11 @@ return [
             'provider' => 'admins',
         ],
 
+        'another' => [
+            'driver' => 'session',
+            'provider' => 'anothers',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -83,7 +88,13 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
-        ]
+        ],
+
+        // Anotherの設定の追加
+        'anothers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Another::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -117,6 +128,14 @@ return [
         // Adminの設定の追加
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        // Anotherの設定追加
+        'another' => [
+            'provider' => 'anothers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
