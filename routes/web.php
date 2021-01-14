@@ -11,6 +11,9 @@
 |
 */
 
+// Stokのルート（テストも追加しながら実装していくのでわかりやすいようにルート設定）
+// 在庫一覧のテスト
+Route::get('/stoks', 'StokController@index');
 
 // ユーザーのルート
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
@@ -59,3 +62,4 @@ Route::namespace('Another')->prefix('another')->name('another.')->group(function
         Route::resource('home', 'HomeController', ['noly' => 'index']);
     });
 });
+
