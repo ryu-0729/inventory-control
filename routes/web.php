@@ -12,8 +12,19 @@
 */
 
 // Stokのルート（テストも追加しながら実装していくのでわかりやすいようにルート設定）
-// 在庫一覧のテスト
+// 在庫一覧のルート
 Route::get('/stoks', 'StokController@index');
+// 在庫詳細のルート
+Route::get('/stoks/{id}', 'StokController@show');
+// 在庫更新のルート
+Route::put('/stoks/{id}', 'StokController@update');
+// 在庫追加のルート
+Route::get('/stok/new', 'StokController@new');
+// 在庫作成postのルート
+Route::post('/stok', 'StokController@create');
+// 在庫削除のルート
+Route::delete('stoks/{id}', 'StokController@delete');
+
 
 // ユーザーのルート
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
